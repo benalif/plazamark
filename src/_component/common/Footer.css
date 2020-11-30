@@ -1,0 +1,12 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #232f3e;
+  color: white;
+}
+
+.footer__link_list {
+  list-style-type: none;
+  margin: 20px;
+}

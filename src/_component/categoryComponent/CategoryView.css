@@ -1,0 +1,11 @@
+.category-view__products {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.category-view__product {
+  margin: 8px 8px 0px 8px;
+  flex-basis: 20%;
+}

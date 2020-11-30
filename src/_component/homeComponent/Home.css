@@ -1,0 +1,49 @@
+.home {
+  max-width: 1300px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.home__image {
+  width: 100%;
+  mask-image: linear-gradient(to bottom, rgb(0, 0, 0, 1), rgb(0, 0, 0, 0));
+  z-index: -1;
+  margin-bottom: -150px;
+}
+
+.home__row {
+  display: flex;
+  z-index: 1;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.home__caroussel {
+  display: flex;
+  justify-content: start;
+  align-items: stretch;
+  width: 100%;
+  margin: 10px;
+  height: 100%;
+}
+
+.ads {
+  width: 28%;
+  display: flex;
+  flex-direction: column;
+}
+
+.add {
+  text-align: center;
+  box-sizing: border-box;
+  border: 1px solid #e8e8e8;
+  margin: 5px;
+  height: 50%;
+
+  background-color: white;
+}
+
+.caroussel {
+  margin: 5px;
+  width: 70%;
+}
