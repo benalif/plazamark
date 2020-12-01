@@ -3,7 +3,7 @@ import "../common/Header.css";
 import { Link, Redirect } from "react-router-dom";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
-import { useStateValue } from "../../StateProvider";
+import { useStateValue } from "../../_service/StateProvider";
 import { useAuth } from "../Route/Auth";
 
 function Header() {

@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../ProductComponent/Product.css";
-import { useStateValue } from "../../StateProvider";
+import { useStateValue } from "../../_service/StateProvider";
 import "../../sass/ui-assets/components/cards-product.scss";
 
-function Product({ id, title, image, price, rating }) {
+const Product = ({ product }) => {
+  const { id, title, image, price, rating } = product;
   const [{ basket }, dispatch] = useStateValue();
 
   function addToBasket() {
@@ -30,7 +31,7 @@ function Product({ id, title, image, price, rating }) {
             </a>
             <figcaption class="info-wrap">
               <a href="#" class="title">
-                Just another product name
+                {title}
               </a>
 
               <div class="rating-wrap">
@@ -52,13 +53,12 @@ function Product({ id, title, image, price, rating }) {
                 </ul>
                 <span class="label-rating text-muted"> 34 reviws</span>
               </div>
-              <div class="price mt-1">$179.00</div>
+              <div class="price mt-1">{price}</div>
             </figcaption>
           </div>
         </Link>
       </div>
     </>
   );
-}
-
+};
 export default Product;

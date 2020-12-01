@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useStateValue } from "./StateProvider";
+import { useStateValue } from "../../_service/StateProvider";
 import "./Checkout.css";
-import CheckoutProduct from "./CheckoutProduct";
-import Header from "./_component/common/Header";
-import Footer from "./_component/common/Footer";
-import { useAuth } from "./_component/Route/Auth";
+import Header from "../common/Header";
+import { useAuth } from "../Route/Auth";
 
 function OnePageCheckout() {
   const [{ basket }] = useStateValue();

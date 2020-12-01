@@ -2,7 +2,7 @@ import React from "react";
 import "./Home.css";
 import ProductHolder from "../../_component/ProductComponent/ProductHolder";
 
-import { products } from "../../resources";
+import { products } from "../../_util/resources";
 import TopMenu from "../common/TopMenu";
 import SideMenu from "../common/SideMenu";
 import FeatureBlock from "../common/FeatureBlock";

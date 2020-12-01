@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../productDetailComponent/ProductDetail.css";
-import { useStateValue } from "../../StateProvider";
+import { useStateValue } from "../../_service/StateProvider";
+import FeatureSupportBlock from "../common/SupportFeatureBlock";
 
 export default function ProductDetail() {
   const [mainImage, setMainImage] = useState({});
@@ -228,6 +229,7 @@ export default function ProductDetail() {
           </main>
         </div>
       </div>
+      <FeatureSupportBlock />
     </>
   );
 }

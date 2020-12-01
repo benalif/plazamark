@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useStateValue } from "./StateProvider";
+import { useStateValue } from "../../_service/StateProvider";
 import "./Checkout.css";
-import Header from "./_component/common/Header";
+import Header from "../common/Header";
 import { Link } from "react-router-dom";
-import { useAuth } from "./_component/Route/Auth";
+import { useAuth } from "../Route/Auth";
 
 function Checkout() {
   const [{ basket }] = useStateValue();

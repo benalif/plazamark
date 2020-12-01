@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./CategoryView.css";
-import { productsCategory, productSportCategory } from "../../resources";
+import {
+  products,
+  productsCategory,
+  productSportCategory,
+} from "../../_util/resources";
 
 const CategoryView = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -369,198 +373,31 @@ const CategoryView = () => {
               </header>
 
               <div class="row">
-                <div class="col-md-4">
-                  <figure class="card card-product-grid">
-                    <div class="img-wrap">
-                      <span class="badge badge-danger"> NEW </span>
-                      <img src="images/items/1.jpg" />
-                      <a class="btn-overlay" href="#">
-                        <i class="fa fa-search-plus"></i> Quick view
-                      </a>
-                    </div>
-                    <figcaption class="info-wrap">
-                      <div class="fix-height">
-                        <a href="#" class="title">
-                          Great item name goes here
+                {products.map((product) => (
+                  <div class="col-md-4">
+                    <figure class="card card-product-grid">
+                      <div class="img-wrap">
+                        <img src={product.props.image} />
+                        <a class="btn-overlay" href="#">
+                          <i class="fa fa-search-plus"></i> Quick view
                         </a>
-                        <div class="price-wrap mt-2">
-                          <span class="price">$1280</span>
-                          <del class="price-old">$1980</del>
-                        </div>
                       </div>
-                      <a href="#" class="btn btn-block btn-primary">
-                        Add to cart{" "}
-                      </a>
-                    </figcaption>
-                  </figure>
-                </div>
-                <div class="col-md-4">
-                  <figure class="card card-product-grid">
-                    <div class="img-wrap">
-                      <img src="images/items/2.jpg" />
-                      <a class="btn-overlay" href="#">
-                        <i class="fa fa-search-plus"></i> Quick view
-                      </a>
-                    </div>
-                    <figcaption class="info-wrap">
-                      <div class="fix-height">
-                        <a href="#" class="title">
-                          Product name goes here just for demo item
+                      <figcaption class="info-wrap">
+                        <div class="fix-height">
+                          <a href="#" class="title">
+                            {product.props.title}
+                          </a>
+                          <div class="price-wrap mt-2">
+                            <span class="price">{product.props.price}</span>
+                          </div>
+                        </div>
+                        <a href="#" class="btn btn-block btn-primary">
+                          Add to cart{" "}
                         </a>
-                        <div class="price-wrap mt-2">
-                          <span class="price">$1280</span>
-                        </div>
-                      </div>
-                      <a href="#" class="btn btn-block btn-primary">
-                        Add to cart{" "}
-                      </a>
-                    </figcaption>
-                  </figure>
-                </div>
-
-                <div class="col-md-4">
-                  <figure class="card card-product-grid">
-                    <div class="img-wrap">
-                      <img src="images/items/3.jpg" />
-                      <a class="btn-overlay" href="#">
-                        <i class="fa fa-search-plus"></i> Quick view
-                      </a>
-                    </div>
-                    <figcaption class="info-wrap">
-                      <div class="fix-height">
-                        <a href="#" class="title">
-                          Product name goes here just for demo item
-                        </a>
-                        <div class="price-wrap mt-2">
-                          <span class="price">$1280</span>
-                        </div>
-                      </div>
-                      <a href="#" class="btn btn-block btn-primary">
-                        Add to cart{" "}
-                      </a>
-                    </figcaption>
-                  </figure>
-                </div>
-
-                <div class="col-md-4">
-                  <figure class="card card-product-grid">
-                    <div class="img-wrap">
-                      <img src="images/items/4.jpg" />
-                      <a class="btn-overlay" href="#">
-                        <i class="fa fa-search-plus"></i> Quick view
-                      </a>
-                    </div>
-                    <figcaption class="info-wrap">
-                      <div class="fix-height">
-                        <a href="#" class="title">
-                          Product name goes here just for demo item
-                        </a>
-                        <div class="price-wrap mt-2">
-                          <span class="price">$1280</span>
-                        </div>
-                      </div>
-                      <a href="#" class="btn btn-block btn-primary">
-                        Add to cart{" "}
-                      </a>
-                    </figcaption>
-                  </figure>
-                </div>
-
-                <div class="col-md-4">
-                  <figure class="card card-product-grid">
-                    <div class="img-wrap">
-                      <img src="images/items/5.jpg" />
-                      <a class="btn-overlay" href="#">
-                        <i class="fa fa-search-plus"></i> Quick view
-                      </a>
-                    </div>
-                    <figcaption class="info-wrap">
-                      <div class="fix-height">
-                        <a href="#" class="title">
-                          Product name goes here just for demo item
-                        </a>
-                        <div class="price-wrap mt-2">
-                          <span class="price">$1280</span>
-                        </div>
-                      </div>
-                      <a href="#" class="btn btn-block btn-primary">
-                        Add to cart{" "}
-                      </a>
-                    </figcaption>
-                  </figure>
-                </div>
-
-                <div class="col-md-4">
-                  <figure class="card card-product-grid">
-                    <div class="img-wrap">
-                      <img src="images/items/6.jpg" />
-                      <a class="btn-overlay" href="#">
-                        <i class="fa fa-search-plus"></i> Quick view
-                      </a>
-                    </div>
-                    <figcaption class="info-wrap">
-                      <div class="fix-height">
-                        <a href="#" class="title">
-                          Product name goes here just for demo item
-                        </a>
-                        <div class="price-wrap mt-2">
-                          <span class="price">$1280</span>
-                        </div>
-                      </div>
-                      <a href="#" class="btn btn-block btn-primary">
-                        Add to cart{" "}
-                      </a>
-                    </figcaption>
-                  </figure>
-                </div>
-
-                <div class="col-md-4">
-                  <figure class="card card-product-grid">
-                    <div class="img-wrap">
-                      <img src="images/items/7.jpg" />
-                      <a class="btn-overlay" href="#">
-                        <i class="fa fa-search-plus"></i> Quick view
-                      </a>
-                    </div>
-                    <figcaption class="info-wrap">
-                      <div class="fix-height">
-                        <a href="#" class="title">
-                          Product name goes here just for demo item
-                        </a>
-                        <div class="price-wrap mt-2">
-                          <span class="price">$1280</span>
-                        </div>
-                      </div>
-                      <a href="#" class="btn btn-block btn-primary">
-                        Add to cart{" "}
-                      </a>
-                    </figcaption>
-                  </figure>
-                </div>
-
-                <div class="col-md-4">
-                  <figure class="card card-product-grid">
-                    <div class="img-wrap">
-                      <img src="images/items/1.jpg" />
-                      <a class="btn-overlay" href="#">
-                        <i class="fa fa-search-plus"></i> Quick view
-                      </a>
-                    </div>
-                    <figcaption class="info-wrap">
-                      <div class="fix-height">
-                        <a href="#" class="title">
-                          Product name goes here just for demo item
-                        </a>
-                        <div class="price-wrap mt-2">
-                          <span class="price">$1280</span>
-                        </div>
-                      </div>
-                      <a href="#" class="btn btn-block btn-primary">
-                        Add to cart{" "}
-                      </a>
-                    </figcaption>
-                  </figure>
-                </div>
+                      </figcaption>
+                    </figure>
+                  </div>
+                ))}
               </div>
               <nav class="mt-4" aria-label="Page navigation sample">
                 <ul class="pagination">

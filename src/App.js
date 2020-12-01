@@ -5,16 +5,15 @@ import {
   Switch,
   Route,
   Redirect,
-  Link,
 } from "react-router-dom";
 import HomePage from "./_component/homeComponent/HomePage";
-import Checkout from "./Checkout";
+import Checkout from "../src/_component/CheckoutComponent/Checkout";
 import CategoryPage from "./_component/categoryComponent/CategoryPage";
 import ProductDetailPage from "./_component/productDetailComponent/ProductDetailPage";
 import NotFoundPage from "./_component/common/NotFoundPage";
 import Login from "./_component/LoginComponent/Login";
 import PrivateRoute from "./_component/Route/PrivateRoute";
-import OnePageCheckout from "./onepagecheckout";
+import OnePageCheckout from "../src/_component/CheckoutComponent/onepagecheckout";
 import { authContext } from "./_component/Route/Auth";
 
 function App() {
