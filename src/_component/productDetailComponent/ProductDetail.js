@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "../productDetailComponent/ProductDetail.css";
-import { products } from "../../resources";
 import { useStateValue } from "../../StateProvider";
 
 export default function ProductDetail() {

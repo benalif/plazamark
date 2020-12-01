@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./CategoryView.css";
 import { productsCategory, productSportCategory } from "../../resources";
-import Pagination from "../../Pagination";
 
 const CategoryView = () => {
   const [currentPage, setCurrentPage] = useState(1);

@@ -1,6 +1,6 @@
 import React from "react";
 import Category from "./_component/categoryComponent/Category";
-import Product from "./Product";
+import Product from "../src/_component/ProductComponent/Product";
 
 export const categories = [
   <Category

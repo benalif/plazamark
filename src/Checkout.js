@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useStateValue } from "./StateProvider";
 import "./Checkout.css";
-import CheckoutProduct from "./CheckoutProduct";
 import Header from "./_component/common/Header";
-import Footer from "./_component/common/Footer";
-import { products } from "./resources";
 import { Link } from "react-router-dom";
-import ProductHoder from "./ProductHolder";
 import { useAuth } from "./_component/Route/Auth";
 
 function Checkout() {
