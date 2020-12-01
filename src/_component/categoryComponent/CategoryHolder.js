@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../categoryComponent/CategoryHolder.css";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { Link } from "react-router-dom";
 import Category from "./Category";
+
 const CategoryHolder = ({ title, secondTitle, categories }) => {
   return (
     <div className="category-holder">

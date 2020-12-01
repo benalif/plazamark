@@ -1,19 +1,26 @@
 import React, { useState, useEffect } from "react";
 import "./CategoryView.css";
-import {
-  products,
-  productsCategory,
-  productSportCategory,
-} from "../../_util/resources";
+import { productsCategory, productSportCategory } from "../../_util/resources";
+import Axios from "axios";
+import { PRODUCT_URL } from "../../_util/resources";
 
 const CategoryView = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [productPerPage] = useState(12);
   const [ProductNubmer, setProductNumber] = useState();
+  const [products, setProducts] = useState([]);
 
+  //get products
   useEffect(() => {
-    getProduct();
-  }, 0);
+    Axios.get(PRODUCT_URL)
+      .then((response) => {
+        console.log(response.data);
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.error();
+      });
+  }, []);
 
   // Get current posts
   const indexOfLastPost = currentPage * productPerPage;
@@ -342,7 +349,7 @@ const CategoryView = () => {
             <main class="col-md-9">
               <header class="border-bottom mb-4 pb-3">
                 <div class="form-inline">
-                  <span class="mr-md-auto">32 Items found </span>
+                  <span class="mr-md-auto">{products.length} Items found </span>
                   <select class="mr-2 form-control">
                     <option>Latest items</option>
                     <option>Trending</option>
@@ -377,7 +384,7 @@ const CategoryView = () => {
                   <div class="col-md-4">
                     <figure class="card card-product-grid">
                       <div class="img-wrap">
-                        <img src={product.props.image} />
+                        <img src={product.image} />
                         <a class="btn-overlay" href="#">
                           <i class="fa fa-search-plus"></i> Quick view
                         </a>
@@ -385,10 +392,10 @@ const CategoryView = () => {
                       <figcaption class="info-wrap">
                         <div class="fix-height">
                           <a href="#" class="title">
-                            {product.props.title}
+                            {product.title}
                           </a>
                           <div class="price-wrap mt-2">
-                            <span class="price">{product.props.price}</span>
+                            <span class="price">{product.price}</span>
                           </div>
                         </div>
                         <a href="#" class="btn btn-block btn-primary">
@@ -399,7 +406,10 @@ const CategoryView = () => {
                   </div>
                 ))}
               </div>
-              <nav class="mt-4" aria-label="Page navigation sample">
+              <nav
+                class="mt-4 d-flex justify-content-center"
+                aria-label="Page navigation sample"
+              >
                 <ul class="pagination">
                   <li class="page-item disabled">
                     <a class="page-link" href="#">

@@ -2,6 +2,9 @@ import React from "react";
 import Category from "../_component/categoryComponent/Category";
 import Product from "../_component/ProductComponent/Product";
 
+export const BASE_URL = "https://fakestoreapi.com";
+export const PRODUCT_URL = BASE_URL + "/products";
+
 export const categories = [
   <Category
     title="Sport"
