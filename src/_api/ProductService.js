@@ -1,13 +1,26 @@
 import Axios from "axios";
-import { PRODUCT_URL } from "../_util/resources";
+import { useEffect, useState } from "react";
 
-export const getProducts = (setProducts) => {
-  Axios.get(PRODUCT_URL)
-    .then((response) => {
-      console.log(response.data);
-      setProducts(response.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+export const useFetch = (endpoint) => {
+  const [response, setResponse] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    setLoading(true);
+    setResponse({});
+    setError(null);
+
+    Axios.get(endpoint)
+      .then((response) => {
+        setLoading(false);
+        setError(null);
+        setResponse(response);
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  }, []);
+
+  return [response, loading, error];
 };

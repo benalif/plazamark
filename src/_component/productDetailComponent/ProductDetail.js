@@ -1,48 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../productDetailComponent/ProductDetail.css";
 import { useStateValue } from "../../_service/StateProvider";
 import FeatureSupportBlock from "../common/SupportFeatureBlock";
 import { useParams } from "react-router-dom";
-import {
-  CATEGORY_PRODUCTS_URL,
-  products,
-  PRODUCT_URL,
-} from "../../_util/resources";
-import Axios from "axios";
-import ProductDetailPage from "./ProductDetailPage";
+import { PRODUCT_URL } from "../../_util/resources";
+import { useFetch } from "../../_api/ProductService";
 
-const ProductDetail = (props) => {
-  const [mainImage, setMainImage] = useState({});
-
-  const [product, setProduct] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
+const ProductDetail = () => {
   const { id } = useParams();
-
-  console.log(id);
-  const images = [product.image, product.image, product.image, product.image];
-
-  //get products
-  useEffect(() => {
-    setLoading(true);
-    setProduct({});
-    setError(null);
-
-    Axios.get(PRODUCT_URL + "/" + id)
-      .then((response) => {
-        setLoading(false);
-        setError(null);
-        setProduct(response.data);
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error();
-        setLoading(false);
-        setError("error");
-      });
-  }, []);
-
   const [{ basket }, dispatch] = useStateValue();
 
   const addToBasket = (id, title, image, price, rating) => {
@@ -58,6 +23,9 @@ const ProductDetail = (props) => {
     });
   };
 
+  const [response, loading, error] = useFetch(PRODUCT_URL + "/" + id);
+  const product = (response && response.data) || {};
+  const images = [product.image, product.image, product.image, product.image];
   return (
     <>
       <div class="card">
@@ -192,21 +160,19 @@ const ProductDetail = (props) => {
               <a href="#" class="btn  btn-primary">
                 Buy now
               </a>
-              <a href="#" class="btn  btn-outline-primary">
-                <span
-                  class="text"
-                  onClick={() =>
-                    addToBasket(
-                      product.id,
-                      product.title,
-                      product.image,
-                      product.price,
-                      null
-                    )
-                  }
-                >
-                  Add to cart
-                </span>
+              <a
+                class="btn  btn-outline-primary"
+                onClick={() =>
+                  addToBasket(
+                    product.id,
+                    product.title,
+                    product.image,
+                    product.price,
+                    null
+                  )
+                }
+              >
+                <span class="text">Add to cart</span>
                 <i class="fas fa-shopping-cart"></i>
               </a>
             </article>

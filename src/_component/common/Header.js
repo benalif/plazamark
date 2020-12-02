@@ -178,7 +178,7 @@ function Header() {
                     <a href="#" class="widget-header mr-2">
                       <div class="icon">
                         <i class="icon-sm rounded-circle border fa fa-shopping-cart"></i>
-                        <span class="notify">0</span>
+                        <span class="notify">{basket.length}</span>
                       </div>
                     </a>
                   </Link>
