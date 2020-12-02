@@ -23,11 +23,10 @@ const Product = ({ product }) => {
   return (
     <>
       <div class="col-md-3">
-        <Link to={`/product/${id}`}>
+        <Link to={`/products/${id}`}>
           <div href="#" class="card card-product-grid">
             <a href="#" class="img-wrap">
-              {" "}
-              <img src={image} />{" "}
+              <img src={image} />
             </a>
             <figcaption class="info-wrap">
               <a href="#" class="title">

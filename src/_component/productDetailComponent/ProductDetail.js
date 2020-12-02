@@ -2,62 +2,46 @@ import React, { useState, useEffect } from "react";
 import "../productDetailComponent/ProductDetail.css";
 import { useStateValue } from "../../_service/StateProvider";
 import FeatureSupportBlock from "../common/SupportFeatureBlock";
+import { useParams } from "react-router-dom";
+import {
+  CATEGORY_PRODUCTS_URL,
+  products,
+  PRODUCT_URL,
+} from "../../_util/resources";
+import Axios from "axios";
+import ProductDetailPage from "./ProductDetailPage";
 
-export default function ProductDetail() {
+const ProductDetail = (props) => {
   const [mainImage, setMainImage] = useState({});
-  const [modalShow, setModalShow] = useState(false);
 
+  const [product, setProduct] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const { id } = useParams();
+
+  console.log(id);
+  const images = [product.image, product.image, product.image, product.image];
+
+  //get products
   useEffect(() => {
-    setMainImage({
-      id: "det_img_156865fbd047231f47_41131",
-      className: "ty-pict",
-      src:
-        "https://market.yassir.io/images/thumbnails/500/600/detailed/41/1_8eaq-5v.jpg",
-    });
-  }, []);
+    setLoading(true);
+    setProduct({});
+    setError(null);
 
-  let data = {
-    title: "Lunettes De Soleil Unisexe - NDW100006 - Noir/Rose Clair",
-    ordinaryPrice: "8 000 DZD",
-    price: "2500",
-    reference: "VS49",
-    availble: "56 Articles",
-    quantity: "",
-    img: [
-      {
-        id: "det_img_156865fbd047231f47_41131",
-        className: "ty-pict",
-        src:
-          "https://market.yassir.io/images/thumbnails/75/90/detailed/41/1_8eaq-5v.jpg",
-        srcBig:
-          "https://market.yassir.io/images/thumbnails/500/600/detailed/41/1_8eaq-5v.jpg",
-      },
-      {
-        id: "det_img_156865fbd047231f47_41131",
-        class: "ty-pict",
-        src:
-          "https://market.yassir.io/images/thumbnails/75/90/detailed/41/2_qpur-zb.jpg",
-        srcBig:
-          "https://market.yassir.io/images/thumbnails/500/600/detailed/41/2_qpur-zb.jpg",
-      },
-      {
-        id: "det_img_156865fbd047231f47_41131",
-        class: "ty-pict",
-        src:
-          "https://market.yassir.io/images/thumbnails/75/90/detailed/41/4_rxyl-jf.jpg",
-        srcBig:
-          "https://market.yassir.io/images/thumbnails/500/600/detailed/41/4_rxyl-jf.jpg",
-      },
-      {
-        id: "det_img_156865fbd047231f47_41131",
-        class: "ty-pict",
-        src:
-          "https://market.yassir.io/images/thumbnails/75/90/detailed/41/3_sesb-zc.jpg",
-        srcBig:
-          "https://market.yassir.io/images/thumbnails/500/600/detailed/41/3_sesb-zc.jpg",
-      },
-    ],
-  };
+    Axios.get(PRODUCT_URL + "/" + id)
+      .then((response) => {
+        setLoading(false);
+        setError(null);
+        setProduct(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error();
+        setLoading(false);
+        setError("error");
+      });
+  }, []);
 
   const [{ basket }, dispatch] = useStateValue();
 
@@ -82,14 +66,14 @@ export default function ProductDetail() {
             <article class="gallery-wrap">
               <div class="img-big-wrap">
                 <a href="#">
-                  <img src={data.img[0].srcBig} />
+                  <img src={product.image} />
                 </a>
               </div>
               <div class="thumbs-wrap">
-                {data.img.map((img) => (
+                {images.map((img) => (
                   <a href="#" class="item-thumb">
                     {" "}
-                    <img src={img.src} />
+                    <img src={img} />
                   </a>
                 ))}
               </div>
@@ -97,7 +81,7 @@ export default function ProductDetail() {
           </aside>
           <main class="col-md-6 border-left">
             <article class="content-body">
-              <h2 class="title">{data.title}</h2>
+              <h2 class="title">{product.title}</h2>
 
               <div class="rating-wrap my-3">
                 <ul class="rating-stars">
@@ -122,7 +106,7 @@ export default function ProductDetail() {
               </div>
 
               <div class="mb-3">
-                <var class="price h4">$815.00</var>
+                <var class="price h4">${product.price}</var>
                 <span class="text-muted">/per kg</span>
               </div>
 
@@ -213,10 +197,10 @@ export default function ProductDetail() {
                   class="text"
                   onClick={() =>
                     addToBasket(
-                      data.id,
-                      data.title,
-                      mainImage.src,
-                      data.price,
+                      product.id,
+                      product.title,
+                      product.image,
+                      product.price,
                       null
                     )
                   }
@@ -232,4 +216,6 @@ export default function ProductDetail() {
       <FeatureSupportBlock />
     </>
   );
-}
+};
+
+export default ProductDetail;

@@ -1,6 +1,6 @@
 import React from "react";
 import "../common/Header.css";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useParams } from "react-router-dom";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { useStateValue } from "../../_service/StateProvider";
@@ -141,10 +141,11 @@ function Header() {
               <div class="col-lg-3 col-sm-4 col-12">
                 <div class="brand-wrap">
                   <Link to="/">
-                    <img
+                    {/* <img
                       class="logo"
                       src="https://cdn.ycan.shop/stores/plazamark/others/VcQwd9iZuIripZFqOHKrQnlMiI0HThMOgHtr5QGn.png "
-                    />
+                    /> */}
+                    <h3>PlazaMark</h3>
                   </Link>
                 </div>
               </div>
@@ -173,94 +174,123 @@ function Header() {
               </div>
               <div class="col-lg-5 col-xl-4 col-sm-12">
                 <div class="widgets-wrap float-md-right">
-                  <a href="#" class="widget-header mr-2">
-                    <div class="icon">
-                      <i class="icon-sm rounded-circle border fa fa-shopping-cart"></i>
-                      <span class="notify">0</span>
-                    </div>
-                  </a>
+                  <Link to="/cart">
+                    <a href="#" class="widget-header mr-2">
+                      <div class="icon">
+                        <i class="icon-sm rounded-circle border fa fa-shopping-cart"></i>
+                        <span class="notify">0</span>
+                      </div>
+                    </a>
+                  </Link>
                   <a href="#" class="widget-header mr-2">
                     <div class="icon">
                       <i class="icon-sm rounded-circle border fa fa-heart"></i>
                     </div>
                   </a>
-                  <div class="widget-header dropdown">
-                    <a
-                      href="#"
-                      data-toggle="dropdown"
-                      data-offset="20,10"
-                      aria-expanded="false"
-                    >
-                      <div class="icontext">
-                        <div class="icon">
-                          <i class="icon-sm rounded-circle border fa fa-user"></i>
-                        </div>
-                        <div class="text">
-                          <small class="text-muted">Sign in | Join</small>
-                          <div>
-                            My account <i class="fa fa-caret-down"></i>{" "}
+                  {!authTokens ? (
+                    <div class="widget-header dropdown">
+                      <a
+                        href="#"
+                        data-toggle="dropdown"
+                        data-offset="20,10"
+                        aria-expanded="false"
+                      >
+                        <div class="icontext">
+                          <div class="icon">
+                            <i class="icon-sm rounded-circle border fa fa-user"></i>
+                          </div>
+                          <div class="text">
+                            <small class="text-muted">Sign in | Join</small>
+                            <div>
+                              My account <i class="fa fa-caret-down"></i>{" "}
+                            </div>
                           </div>
                         </div>
+                      </a>
+                      <div
+                        class="dropdown-menu dropdown-menu-right"
+                        x-placement="bottom-end"
+                        style={{
+                          position: "absolute",
+                          willChange: "transform",
+                          top: "0px",
+                          left: "0px",
+                          transform: "translate3d(154px, 42px, 0px)",
+                        }}
+                      >
+                        <form class="px-4 py-3">
+                          <div class="form-group">
+                            <label>Email address</label>
+                            <input
+                              type="email"
+                              class="form-control"
+                              placeholder="email@example.com"
+                            />
+                          </div>
+                          <div class="form-group">
+                            <label>Password</label>
+                            <input
+                              type="password"
+                              class="form-control"
+                              placeholder="Password"
+                            />
+                          </div>
+                          <button type="submit" class="btn btn-primary">
+                            Sign in
+                          </button>
+                        </form>
+                        <hr class="dropdown-divider" />
+                        <a class="dropdown-item" href="#">
+                          Have account? Sign up
+                        </a>
+                        <a class="dropdown-item" href="#">
+                          Forgot password?
+                        </a>
                       </div>
-                    </a>
-                    <div
-                      class="dropdown-menu dropdown-menu-right"
-                      x-placement="bottom-end"
-                      style={{
-                        position: "absolute",
-                        willChange: "transform",
-                        top: "0px",
-                        left: "0px",
-                        transform: "translate3d(154px, 42px, 0px)",
-                      }}
-                    >
-                      <form class="px-4 py-3">
-                        <div class="form-group">
-                          <label>Email address</label>
-                          <input
-                            type="email"
-                            class="form-control"
-                            placeholder="email@example.com"
-                          />
-                        </div>
-                        <div class="form-group">
-                          <label>Password</label>
-                          <input
-                            type="password"
-                            class="form-control"
-                            placeholder="Password"
-                          />
-                        </div>
-                        <button type="submit" class="btn btn-primary">
-                          Sign in
-                        </button>
-                      </form>
-                      <hr class="dropdown-divider" />
-                      <a class="dropdown-item" href="#">
-                        Have account? Sign up
-                      </a>
-                      <a class="dropdown-item" href="#">
-                        Forgot password?
-                      </a>
                     </div>
-                  </div>
+                  ) : (
+                    <div class="widget-header dropdown">
+                      <a
+                        className="nav-link dropdown-toggle"
+                        href="#"
+                        id="navbarDropdown"
+                        role="button"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        {`Bonjour, ${authTokens.username}`}
+                      </a>
+                      <div
+                        className="dropdown-menu"
+                        aria-labelledby="navbarDropdown"
+                      >
+                        <a className="dropdown-item" href="#">
+                          Votre compte
+                        </a>
+                        <a className="dropdown-item" href="#">
+                          Vos commandes
+                        </a>
+                        <a className="dropdown-item" href="#">
+                          Votre liste d'envis
+                        </a>
+                        <div className="dropdown-divider"></div>
+                        <a
+                          className="dropdown-item"
+                          href="#"
+                          onClick={disconnect}
+                        >
+                          Déconnexion
+                        </a>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
           </div>
         </section>
       </header>
-      <br />
-      <p style={{ maxWidth: "90%" }} class="mx-auto">
-        Use any container for content body... Lorem ipsum dolor sit amet,
-        consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
-      <br></br>
 
       {/* <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <Link to="/">

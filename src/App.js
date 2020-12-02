@@ -16,6 +16,8 @@ import PrivateRoute from "./_component/Route/PrivateRoute";
 import OnePageCheckout from "../src/_component/CheckoutComponent/onepagecheckout";
 import { authContext } from "./_component/Route/Auth";
 
+import ScrollTopTop from "../src/_component/Route/ScrollToTop";
+
 function App() {
   const existingTokens = JSON.parse(localStorage.getItem("token"));
   const [authTokens, setAuthToken] = useState(existingTokens);
@@ -33,36 +35,34 @@ function App() {
   return (
     <div className="App">
       <authContext.Provider value={{ authTokens, setAuthToken: setToken }}>
-        <Router>
-          <Switch>
-            <Route exact path="/login" component={Login}>
-              {authTokens ? <Redirect to="account" /> : <Login />}
-            </Route>
-            <Route exact path="/cart" component={Checkout} />
-            <PrivateRoute
-              exact
-              path="/onepagecheckout"
-              component={OnePageCheckout}
-            >
-              {/* {!authTokens ? <Redirect to="/login" /> : <OnePageCheckout />} */}
-            </PrivateRoute>
+        <Router basename="/plazamark">
+          <ScrollTopTop>
+            <Switch>
+              <Route exact path="/login" component={Login}>
+                {authTokens ? <Redirect to="account" /> : <Login />}
+              </Route>
+              <Route exact path="/cart" component={Checkout} />
+              <PrivateRoute
+                exact
+                path="/onepagecheckout"
+                component={OnePageCheckout}
+              >
+                {/* {!authTokens ? <Redirect to="/login" /> : <OnePageCheckout />} */}
+              </PrivateRoute>
 
-            <PrivateRoute exact path="/account" component={account} />
-            <Route exact path="/history" />
-            <Route
-              exact
-              path="/product/:productDetail"
-              component={ProductDetailPage}
-            />
-            <Route
-              exact
-              path="/products/category/:id"
-              component={CategoryPage}
-            />
+              <PrivateRoute exact path="/account" component={account} />
+              <Route exact path="/history" />
+              <Route exact path="/products/:id" component={ProductDetailPage} />
+              <Route
+                exact
+                path="/products/category/:id"
+                component={CategoryPage}
+              />
 
-            <Route exact path="/" component={HomePage} />
-            <Route component={NotFoundPage} />
-          </Switch>
+              <Route exact path="/" component={HomePage} />
+              <Route component={NotFoundPage} />
+            </Switch>
+          </ScrollTopTop>
         </Router>
       </authContext.Provider>
     </div>

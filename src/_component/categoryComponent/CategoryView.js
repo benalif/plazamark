@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./CategoryView.css";
-import { productsCategory, productSportCategory } from "../../_util/resources";
 import Axios from "axios";
-import { CATEGORY_PRODUCTS_URL, PRODUCT_URL } from "../../_util/resources";
+import { PRODUCT_URL } from "../../_util/resources";
 import { useParams } from "react-router-dom";
 import Pagination from "../common/Pagination";
 
-const CategoryView = (props) => {
+const CategoryView = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [productPerPage] = useState(6);
   const [ProductNubmer, setProductNumber] = useState();
@@ -345,6 +344,7 @@ const CategoryView = (props) => {
                 </article>
               </div>
             </aside>
+            {error && <p>{error}</p>}
             {loading ? (
               <div class="spinner-border text-primary" role="status">
                 <span class="sr-only">Loading...</span>
