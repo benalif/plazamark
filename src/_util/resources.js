@@ -4,6 +4,7 @@ import Product from "../_component/ProductComponent/Product";
 
 export const BASE_URL = "https://fakestoreapi.com";
 export const PRODUCT_URL = BASE_URL + "/products";
+export const CATEGORY_PRODUCTS_URL = BASE_URL + "/products/category/";
 
 export const categories = [
   <Category

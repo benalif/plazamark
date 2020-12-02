@@ -56,7 +56,7 @@ function App() {
             />
             <Route
               exact
-              path="/product-category/:categoryId"
+              path="/products/category/:id"
               component={CategoryPage}
             />
 

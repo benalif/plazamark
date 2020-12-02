@@ -140,10 +140,12 @@ function Header() {
             <div class="row align-items-center">
               <div class="col-lg-3 col-sm-4 col-12">
                 <div class="brand-wrap">
-                  <img
-                    class="logo"
-                    src="https://cdn.ycan.shop/stores/plazamark/others/VcQwd9iZuIripZFqOHKrQnlMiI0HThMOgHtr5QGn.png "
-                  />
+                  <Link to="/">
+                    <img
+                      class="logo"
+                      src="https://cdn.ycan.shop/stores/plazamark/others/VcQwd9iZuIripZFqOHKrQnlMiI0HThMOgHtr5QGn.png "
+                    />
+                  </Link>
                 </div>
               </div>
               <div class="col-lg-4 col-xl-5 col-sm-8 col-9">

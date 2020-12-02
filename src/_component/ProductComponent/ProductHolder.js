@@ -12,7 +12,7 @@ const ProductHolder = ({ title, secondTitle, products }) => {
       <div class="container">
         <header class="section-heading">
           <Link
-            to="product-category/Sport"
+            to="/products/category/jewelery"
             class="btn btn-outline-primary float-right"
           >
             {secondTitle}

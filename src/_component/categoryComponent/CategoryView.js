@@ -2,23 +2,37 @@ import React, { useState, useEffect } from "react";
 import "./CategoryView.css";
 import { productsCategory, productSportCategory } from "../../_util/resources";
 import Axios from "axios";
-import { PRODUCT_URL } from "../../_util/resources";
+import { CATEGORY_PRODUCTS_URL, PRODUCT_URL } from "../../_util/resources";
+import { useParams } from "react-router-dom";
+import Pagination from "../common/Pagination";
 
-const CategoryView = () => {
+const CategoryView = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [productPerPage] = useState(12);
+  const [productPerPage] = useState(6);
   const [ProductNubmer, setProductNumber] = useState();
+
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const { id } = useParams();
 
   //get products
   useEffect(() => {
+    setLoading(true);
+    setProducts([]);
+    setError(null);
+
     Axios.get(PRODUCT_URL)
       .then((response) => {
-        console.log(response.data);
+        setLoading(false);
+        setError(null);
         setProducts(response.data);
+        setProductNumber(response.data.length);
       })
       .catch((error) => {
         console.error();
+        setLoading(false);
+        setError("error");
       });
   }, []);
 
@@ -27,25 +41,10 @@ const CategoryView = () => {
   const indexOfFirstPost = indexOfLastPost - productPerPage;
   let currentProducts;
 
-  if (window.location.pathname.replace("/", "") === "Sport") {
-    currentProducts = productSportCategory.slice(
-      indexOfFirstPost,
-      indexOfLastPost
-    );
-  } else {
-    currentProducts = productsCategory.slice(indexOfFirstPost, indexOfLastPost);
-  }
+  currentProducts = products.slice(indexOfFirstPost, indexOfLastPost);
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  function getProduct() {
-    if (window.location.pathname.replace("/", "") === "Sport") {
-      setProductNumber(productSportCategory.length);
-    } else {
-      setProductNumber(productsCategory.length);
-    }
-  }
 
   return (
     <>
@@ -346,99 +345,80 @@ const CategoryView = () => {
                 </article>
               </div>
             </aside>
-            <main class="col-md-9">
-              <header class="border-bottom mb-4 pb-3">
-                <div class="form-inline">
-                  <span class="mr-md-auto">{products.length} Items found </span>
-                  <select class="mr-2 form-control">
-                    <option>Latest items</option>
-                    <option>Trending</option>
-                    <option>Most Popular</option>
-                    <option>Cheapest</option>
-                  </select>
-                  <div class="btn-group">
-                    <a
-                      href="#"
-                      class="btn btn-outline-secondary"
-                      data-toggle="tooltip"
-                      title=""
-                      data-original-title="List view"
-                    >
-                      <i class="fa fa-bars"></i>
-                    </a>
-                    <a
-                      href="#"
-                      class="btn  btn-outline-secondary active"
-                      data-toggle="tooltip"
-                      title=""
-                      data-original-title="Grid view"
-                    >
-                      <i class="fa fa-th"></i>
-                    </a>
-                  </div>
-                </div>
-              </header>
-
-              <div class="row">
-                {products.map((product) => (
-                  <div class="col-md-4">
-                    <figure class="card card-product-grid">
-                      <div class="img-wrap">
-                        <img src={product.image} />
-                        <a class="btn-overlay" href="#">
-                          <i class="fa fa-search-plus"></i> Quick view
-                        </a>
-                      </div>
-                      <figcaption class="info-wrap">
-                        <div class="fix-height">
-                          <a href="#" class="title">
-                            {product.title}
-                          </a>
-                          <div class="price-wrap mt-2">
-                            <span class="price">{product.price}</span>
-                          </div>
-                        </div>
-                        <a href="#" class="btn btn-block btn-primary">
-                          Add to cart{" "}
-                        </a>
-                      </figcaption>
-                    </figure>
-                  </div>
-                ))}
+            {loading ? (
+              <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
               </div>
-              <nav
-                class="mt-4 d-flex justify-content-center"
-                aria-label="Page navigation sample"
-              >
-                <ul class="pagination">
-                  <li class="page-item disabled">
-                    <a class="page-link" href="#">
-                      Previous
-                    </a>
-                  </li>
-                  <li class="page-item active">
-                    <a class="page-link" href="#">
-                      1
-                    </a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">
-                      2
-                    </a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">
-                      3
-                    </a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">
-                      Next
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </main>
+            ) : (
+              <main class="col-md-9">
+                <header class="border-bottom mb-4 pb-3">
+                  <div class="form-inline">
+                    <span class="mr-md-auto">
+                      {products.length} Items found{" "}
+                    </span>
+                    <select class="mr-2 form-control">
+                      <option>Latest items</option>
+                      <option>Trending</option>
+                      <option>Most Popular</option>
+                      <option>Cheapest</option>
+                    </select>
+                    <div class="btn-group">
+                      <a
+                        href="#"
+                        class="btn btn-outline-secondary"
+                        data-toggle="tooltip"
+                        title=""
+                        data-original-title="List view"
+                      >
+                        <i class="fa fa-bars"></i>
+                      </a>
+                      <a
+                        href="#"
+                        class="btn  btn-outline-secondary active"
+                        data-toggle="tooltip"
+                        title=""
+                        data-original-title="Grid view"
+                      >
+                        <i class="fa fa-th"></i>
+                      </a>
+                    </div>
+                  </div>
+                </header>
+
+                <div class="row">
+                  {currentProducts.map((product) => (
+                    <div class="col-md-4">
+                      <figure class="card card-product-grid">
+                        <div class="img-wrap">
+                          <img src={product.image} />
+                          <a class="btn-overlay" href="#">
+                            <i class="fa fa-search-plus"></i> Quick view
+                          </a>
+                        </div>
+                        <figcaption class="info-wrap">
+                          <div class="fix-height">
+                            <a href="#" class="title">
+                              {product.title}
+                            </a>
+                            <div class="price-wrap mt-2">
+                              <span class="price">{product.price}</span>
+                            </div>
+                          </div>
+                          <a href="#" class="btn btn-block btn-primary">
+                            Add to cart{" "}
+                          </a>
+                        </figcaption>
+                      </figure>
+                    </div>
+                  ))}
+                </div>
+                <Pagination
+                  postPerPage={productPerPage}
+                  totalProdcut={ProductNubmer}
+                  paginate={paginate}
+                ></Pagination>
+              </main>
+            )}
           </div>
         </div>
       </section>
