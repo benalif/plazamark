@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/plazamark/static/css/main.40c3aabc.chunk.css",
-    "main.js": "/plazamark/static/js/main.b7375212.chunk.js",
-    "main.js.map": "/plazamark/static/js/main.b7375212.chunk.js.map",
+    "main.js": "/plazamark/static/js/main.3c7641f9.chunk.js",
+    "main.js.map": "/plazamark/static/js/main.3c7641f9.chunk.js.map",
     "runtime-main.js": "/plazamark/static/js/runtime-main.3db92c62.js",
     "runtime-main.js.map": "/plazamark/static/js/runtime-main.3db92c62.js.map",
     "static/js/2.7be7d8b4.chunk.js": "/plazamark/static/js/2.7be7d8b4.chunk.js",
     "static/js/2.7be7d8b4.chunk.js.map": "/plazamark/static/js/2.7be7d8b4.chunk.js.map",
     "index.html": "/plazamark/index.html",
-    "precache-manifest.d6e3041d4f22ad142573406d96d290fa.js": "/plazamark/precache-manifest.d6e3041d4f22ad142573406d96d290fa.js",
+    "precache-manifest.4f57b16ee437006d405fa4420dc10b1d.js": "/plazamark/precache-manifest.4f57b16ee437006d405fa4420dc10b1d.js",
     "service-worker.js": "/plazamark/service-worker.js",
     "static/css/main.40c3aabc.chunk.css.map": "/plazamark/static/css/main.40c3aabc.chunk.css.map",
     "static/js/2.7be7d8b4.chunk.js.LICENSE.txt": "/plazamark/static/js/2.7be7d8b4.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.3db92c62.js",
     "static/js/2.7be7d8b4.chunk.js",
     "static/css/main.40c3aabc.chunk.css",
-    "static/js/main.b7375212.chunk.js"
+    "static/js/main.3c7641f9.chunk.js"
   ]
 }
