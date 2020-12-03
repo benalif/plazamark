@@ -5,7 +5,8 @@ import FeatureSupportBlock from "../common/SupportFeatureBlock";
 import { useParams } from "react-router-dom";
 import { PRODUCT_URL } from "../../_util/resources";
 import { useFetch } from "../../_api/ProductService";
-
+import ProductHolder from "../ProductComponent/ProductHolder";
+import Skeleton from "react-loading-skeleton";
 const ProductDetail = () => {
   const { id } = useParams();
   const [{ basket }, dispatch] = useStateValue();
@@ -36,14 +37,17 @@ const ProductDetail = () => {
               <aside class="col-md-6">
                 <article class="gallery-wrap">
                   <div class="img-big-wrap">
-                    <a href="#">
-                      <img src={product.image} />
-                    </a>
+                    {product.image ? (
+                      <a href="#">
+                        <img src={product.image} />
+                      </a>
+                    ) : (
+                      <Skeleton height="400px" />
+                    )}
                   </div>
                   <div class="thumbs-wrap">
                     {images.map((img) => (
                       <a href="#" class="item-thumb">
-                        {" "}
                         <img src={img} />
                       </a>
                     ))}
@@ -52,7 +56,7 @@ const ProductDetail = () => {
               </aside>
               <main class="col-md-6 border-left">
                 <article class="content-body">
-                  <h2 class="title">{product.title}</h2>
+                  <h2 class="title">{product.title || <Skeleton />}</h2>
 
                   <div class="rating-wrap my-3">
                     <ul class="rating-stars">
@@ -71,22 +75,22 @@ const ProductDetail = () => {
                     </ul>
                     <small class="label-rating text-muted">132 reviews</small>
                     <small class="label-rating text-success">
-                      {" "}
-                      <i class="fa fa-clipboard-check"></i> 154 orders{" "}
+                      <i class="fa fa-clipboard-check"></i> 154 orders
                     </small>
                   </div>
 
                   <div class="mb-3">
-                    <var class="price h4">${product.price}</var>
-                    <span class="text-muted">/per kg</span>
+                    {product.price ? (
+                      <>
+                        <var class="price h4">{product.price}</var>
+                        <span class="text-muted">/per kg</span>
+                      </>
+                    ) : (
+                      <Skeleton width="80px" />
+                    )}
                   </div>
 
-                  <p>
-                    Virgil Abloh’s Off-White is a streetwear-inspired collection
-                    that continues to break away from the conventions of
-                    mainstream fashion. Made in Italy, these black and brown
-                    Odsy-1000 low-top sneakers.
-                  </p>
+                  <p>{product.description || <Skeleton count={5} />}</p>
 
                   <dl class="row">
                     <dt class="col-sm-3">Model#</dt>
@@ -184,6 +188,7 @@ const ProductDetail = () => {
           </div>
         </div>
       </section>
+      <ProductHolder title="Vus récement" secondTitle="Voir plus" />
       <FeatureSupportBlock />
     </>
   );
