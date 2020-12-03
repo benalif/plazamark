@@ -6,6 +6,7 @@ import { products } from "../../_util/resources";
 import TopMenu from "../common/TopMenu";
 import SideMenu from "../common/SideMenu";
 import FeatureBlock from "../common/FeatureBlock";
+import BrandComponent from "../common/BrandsComponent";
 function Home() {
   return (
     <>
@@ -33,6 +34,7 @@ function Home() {
           products={products}
         ></ProductHolder>
       </div>
+      <BrandComponent />
       <FeatureBlock />
     </>
   );
