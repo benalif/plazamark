@@ -1,6 +1,9 @@
 import React from "react";
 
 const SideMenu = () => {
+  const iconsStyle = {
+    marginRight: "5px",
+  };
   return (
     <section class="section-main bg padding-y">
       <div class="container">
@@ -8,23 +11,65 @@ const SideMenu = () => {
           <aside class="col-md-3">
             <nav class="card">
               <ul class="menu-category">
-                <li>
-                  <a href="#">Best clothes</a>
+                <li className="d-flex">
+                  <a href="#">
+                    <i
+                      class="fa fa-home fa-fw"
+                      aria-hidden="true"
+                      style={iconsStyle}
+                    />
+                    Best clothes
+                  </a>
                 </li>
                 <li>
-                  <a href="#">Automobiles</a>
+                  <a href="#">
+                    <i
+                      class="fa fa-car"
+                      aria-hidden="true"
+                      style={iconsStyle}
+                    ></i>
+                    Automobiles
+                  </a>
                 </li>
                 <li>
-                  <a href="#">Home interior</a>
+                  <a href="#">
+                    <i
+                      class="fa fa-home"
+                      aria-hidden="true"
+                      style={iconsStyle}
+                    ></i>
+                    Home interior
+                  </a>
                 </li>
                 <li>
-                  <a href="#">Electronics</a>
+                  <a href="#">
+                    <i
+                      class="fa fa-car"
+                      aria-hidden="true"
+                      style={iconsStyle}
+                    ></i>
+                    Electronics
+                  </a>
                 </li>
                 <li>
-                  <a href="#">Technologies</a>
+                  <a href="#">
+                    <i
+                      class="fa fa-car"
+                      aria-hidden="true"
+                      style={iconsStyle}
+                    ></i>
+                    Technologies
+                  </a>
                 </li>
                 <li>
-                  <a href="#">Digital goods</a>
+                  <a href="#">
+                    <i
+                      class="fa fa-car"
+                      aria-hidden="true"
+                      style={iconsStyle}
+                    ></i>
+                    Digital goods
+                  </a>
                 </li>
                 <li class="has-submenu">
                   <a href="#">More items</a>
@@ -39,7 +84,14 @@ const SideMenu = () => {
                       <a href="#">Another menu</a>
                     </li>
                     <li>
-                      <a href="#">Some others</a>
+                      <a href="#">
+                        <i
+                          class="fa fa-car"
+                          aria-hidden="true"
+                          style={iconsStyle}
+                        ></i>
+                        Some others
+                      </a>
                     </li>
                   </ul>
                 </li>

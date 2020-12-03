@@ -22,10 +22,11 @@ const Footer = () => {
             <div class="row">
               <aside class="col-md-4">
                 <article class="mr-3">
-                  <img
+                  {/* <img
                     src="bootstrap-ecommerce-html/images/logo.png"
                     class="logo-footer"
-                  />
+                  /> */}
+                  <h3>PlazaMark</h3>
                   <p class="mt-3">
                     Some short text about company like You might remember the
                     Dell computer commercials in which a youth reports this
@@ -138,13 +139,13 @@ const Footer = () => {
                 <h6 class="title">Our app</h6>
                 <a href="#" class="d-block mb-2">
                   <img
-                    src="bootstrap-ecommerce-html/images/misc/appstore.png"
+                    src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/misc/appstore.png"
                     height="40"
                   />
                 </a>
                 <a href="#" class="d-block mb-2">
                   <img
-                    src="bootstrap-ecommerce-html/images/misc/playmarket.png"
+                    src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/misc/playmarket.png"
                     height="40"
                   />
                 </a>
@@ -154,7 +155,7 @@ const Footer = () => {
           <section class="footer-copyright border-top">
             <p class="float-left text-muted">
               {" "}
-              © 2019 Company All rights reserved{" "}
+              © {new Date().getFullYear()} Company All rights reserved{" "}
             </p>
             <p target="_blank" class="float-right text-muted">
               <a href="#">Privacy &amp; Cookies</a> &nbsp; &nbsp;
