@@ -1,7 +1,7 @@
 import Axios from "axios";
 import { useEffect, useState } from "react";
 
-export const useFetch = (endpoint) => {
+export const useFetch = (endpoint, id) => {
   const [response, setResponse] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -11,7 +11,7 @@ export const useFetch = (endpoint) => {
     setResponse({});
     setError(null);
 
-    Axios.get(endpoint)
+    Axios.get(`${endpoint}/${id}`)
       .then((response) => {
         setLoading(false);
         setError(null);
@@ -20,7 +20,7 @@ export const useFetch = (endpoint) => {
       .catch((error) => {
         setError(error);
       });
-  }, []);
+  }, [id]);
 
   return [response, loading, error];
 };

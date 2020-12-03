@@ -24,7 +24,7 @@ const ProductDetail = () => {
     });
   };
 
-  const [response, loading, error] = useFetch(PRODUCT_URL + "/" + id);
+  const [response, loading, error] = useFetch(PRODUCT_URL, id);
   const product = (response && response.data) || {};
   const images = [product.image, product.image, product.image, product.image];
   return (
@@ -42,15 +42,36 @@ const ProductDetail = () => {
                         <img src={product.image} />
                       </a>
                     ) : (
-                      <Skeleton height="400px" />
+                      <Skeleton
+                        style={{
+                          marginBottom: "10px",
+                          borderRadius: "0.37rem",
+                          height: "400px",
+                        }}
+                      />
                     )}
                   </div>
+
                   <div class="thumbs-wrap">
-                    {images.map((img) => (
-                      <a href="#" class="item-thumb">
-                        <img src={img} />
-                      </a>
-                    ))}
+                    {images.map((img) =>
+                      product.image ? (
+                        <a href="#" class="item-thumb">
+                          <img src={img} />
+                        </a>
+                      ) : (
+                        <Skeleton
+                          style={{
+                            width: "60px",
+                            height: " 60px",
+                            border: "1px solid #ddd",
+                            borderRadius: "6px",
+                            margin: "3px",
+                            display: "inline-block",
+                            overflow: "hidden",
+                          }}
+                        />
+                      )
+                    )}
                   </div>
                 </article>
               </aside>
@@ -164,24 +185,35 @@ const ProductDetail = () => {
                       </div>
                     </div>
                   </div>
-                  <a href="#" class="btn  btn-primary">
-                    Buy now
-                  </a>
-                  <a
-                    class="btn  btn-outline-primary"
-                    onClick={() =>
-                      addToBasket(
-                        product.id,
-                        product.title,
-                        product.image,
-                        product.price,
-                        null
-                      )
-                    }
-                  >
-                    <span class="text">Add to cart</span>
-                    <i class="fas fa-shopping-cart"></i>
-                  </a>
+                  {!loading ? (
+                    <a href="#" class="btn  btn-primary">
+                      Buy now
+                    </a>
+                  ) : (
+                    <Skeleton width="5rem" height="2rem" />
+                  )}
+                  {!loading ? (
+                    <>
+                      <a
+                        style={{ marginLeft: "5px" }}
+                        class="btn  btn-outline-primary"
+                        onClick={() =>
+                          addToBasket(
+                            product.id,
+                            product.title,
+                            product.image,
+                            product.price,
+                            null
+                          )
+                        }
+                      >
+                        <span class="text">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>{" "}
+                      </a>
+                    </>
+                  ) : (
+                    <Skeleton width="6rem" height="2rem" />
+                  )}
                 </article>
               </main>
             </div>
