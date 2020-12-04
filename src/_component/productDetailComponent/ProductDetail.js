@@ -7,6 +7,7 @@ import { PRODUCT_URL } from "../../_util/resources";
 import { useFetch } from "../../_api/ProductService";
 import ProductHolder from "../ProductComponent/ProductHolder";
 import Skeleton from "react-loading-skeleton";
+import Review from "./Review";
 const ProductDetail = () => {
   const { id } = useParams();
   const [{ basket }, dispatch] = useStateValue();
@@ -218,8 +219,57 @@ const ProductDetail = () => {
               </main>
             </div>
           </div>
+          <article class="card" style={{ marginTop: "20px" }}>
+            <div class="card-body">
+              <div class="row">
+                <aside class="col-md-6">
+                  <h5>Parameters</h5>
+                  <dl class="row">
+                    <dt class="col-sm-3">Display</dt>
+                    <dd class="col-sm-9">
+                      13.3-inch LED-backlit display with IPS
+                    </dd>
+
+                    <dt class="col-sm-3">Processor</dt>
+                    <dd class="col-sm-9">2.3GHz dual-core Intel Core i5</dd>
+
+                    <dt class="col-sm-3">Camera</dt>
+                    <dd class="col-sm-9">720p FaceTime HD camera</dd>
+
+                    <dt class="col-sm-3">Memory</dt>
+                    <dd class="col-sm-9">8 GB RAM or 16 GB RAM</dd>
+
+                    <dt class="col-sm-3">Graphics</dt>
+                    <dd class="col-sm-9">Intel Iris Plus Graphics 640</dd>
+                  </dl>
+                </aside>
+                <aside class="col-md-6">
+                  <h5>Features</h5>
+                  <ul class="list-check">
+                    <li>Best performance of battery</li>
+                    <li>5 years warranty for this product</li>
+                    <li>Amazing features and high quality</li>
+                    <li>Best performance of battery</li>
+                    <li>5 years warranty for this product</li>
+                  </ul>
+                </aside>
+              </div>
+              <hr />
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+          </article>
         </div>
       </section>
+      <Review />
+      <ProductHolder title="Articles similaires" secondTitle="Voir plus" />
       <ProductHolder title="Vus récement" secondTitle="Voir plus" />
       <FeatureSupportBlock />
     </>
