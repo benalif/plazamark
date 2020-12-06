@@ -13,6 +13,100 @@ function Home() {
       <TopMenu />
       <SideMenu />
 
+      <div class="slider-items-owl owl-carousel owl-theme">
+        <div class="item-slide">
+          <figure class="card card-product-grid">
+            <div class="img-wrap">
+              <span class="badge badge-danger"> New </span>
+              <img src="images/items/1.jpg" />
+            </div>
+            <figcaption class="info-wrap text-center">
+              <h6 class="title text-truncate">
+                <a href="#">First item name</a>
+              </h6>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="item-slide">
+          <figure class="card card-product-grid">
+            <div class="img-wrap">
+              {" "}
+              <img src="images/items/2.jpg" />{" "}
+            </div>
+            <figcaption class="info-wrap text-center">
+              <h6 class="title">
+                <a href="#">Second item name</a>
+              </h6>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="item-slide">
+          <figure class="card card-product-grid">
+            <div class="img-wrap">
+              {" "}
+              <img src="images/items/3.jpg" />{" "}
+            </div>
+            <figcaption class="info-wrap text-center">
+              <h6 class="title">
+                <a href="#">Third item name</a>
+              </h6>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="item-slide">
+          <figure class="card card-product-grid">
+            <div class="img-wrap">
+              {" "}
+              <img src="images/items/4.jpg" />{" "}
+            </div>
+            <figcaption class="info-wrap text-center">
+              <h6 class="title">
+                <a href="#">Good item name</a>
+              </h6>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="item-slide">
+          <figure class="card card-product-grid">
+            <div class="img-wrap">
+              {" "}
+              <img src="images/items/5.jpg" />{" "}
+            </div>
+            <figcaption class="info-wrap text-center">
+              <h6 class="title">
+                <a href="#">Another item name</a>
+              </h6>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="item-slide">
+          <figure class="card card-product-grid">
+            <div class="img-wrap">
+              {" "}
+              <img src="images/items/3.jpg" />{" "}
+            </div>
+            <figcaption class="info-wrap text-center">
+              <h6 class="title">
+                <a href="#">Third item name</a>
+              </h6>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="item-slide">
+          <figure class="card card-product-grid">
+            <div class="img-wrap">
+              {" "}
+              <img src="images/items/4.jpg" />{" "}
+            </div>
+            <figcaption class="info-wrap text-center">
+              <h6 class="title">
+                <a href="#">Good item name</a>
+              </h6>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
       <div className="home__row">
         <ProductHolder
           title="Nos offres du jour"

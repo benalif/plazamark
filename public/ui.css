@@ -1409,7 +1409,7 @@ a[class*="card"]:hover .title {
   height: 450px;
   width: auto;
   display: inline-block;
-  cursor: zoom-in;
+  /* cursor: zoom-in; */
 }
 .gallery-wrap .thumbs-wrap {
   text-align: center;
@@ -1430,12 +1430,12 @@ a[class*="card"]:hover .title {
   -o-object-fit: cover;
   object-fit: cover;
   border-radius: 4px;
-  cursor: zoom-in;
+  /* cursor: zoom-in; */
 }
 .gallery-wrap .thumbs-wrap img:hover {
   -webkit-filter: brightness(1.1);
   filter: brightness(1.1);
-  cursor: zoom-in;
+  /* cursor: zoom-in; */
 }
 
 .item-option-select {

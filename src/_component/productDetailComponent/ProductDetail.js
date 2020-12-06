@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import "../productDetailComponent/ProductDetail.css";
 import { useStateValue } from "../../_service/StateProvider";
 import FeatureSupportBlock from "../common/SupportFeatureBlock";
@@ -8,9 +8,12 @@ import { useFetch } from "../../_api/ProductService";
 import ProductHolder from "../ProductComponent/ProductHolder";
 import Skeleton from "react-loading-skeleton";
 import Review from "./Review";
+import ProductModal from "../productDetailComponent/ProductModal";
+import Product from "../ProductComponent/Product";
 const ProductDetail = () => {
   const { id } = useParams();
   const [{ basket }, dispatch] = useStateValue();
+  const [image, setImage] = useState(null);
 
   const addToBasket = (id, title, image, price, rating) => {
     dispatch({
@@ -25,22 +28,32 @@ const ProductDetail = () => {
     });
   };
 
-  const [response, loading, error] = useFetch(PRODUCT_URL, id);
+  const [response, loading, error] = useFetch(PRODUCT_URL, id, image);
   const product = (response && response.data) || {};
-  const images = [product.image, product.image, product.image, product.image];
+  const images = [
+    product.image,
+    "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+    product.image,
+    "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
+  ];
+
   return (
     <>
-      {" "}
+      <ProductModal product={product} />
       <section class="section-name bg padding-y-sm">
         <div class="container">
           <div class="card">
             <div class="row no-gutters">
               <aside class="col-md-6">
                 <article class="gallery-wrap">
-                  <div class="img-big-wrap">
-                    {product.image ? (
-                      <a href="#">
-                        <img src={product.image} />
+                  <div
+                    class="img-big-wrap"
+                    data-toggle="modal"
+                    data-target="#exampleModal"
+                  >
+                    {!loading ? (
+                      <a>
+                        <img src={image || product.image} />
                       </a>
                     ) : (
                       <Skeleton
@@ -56,8 +69,14 @@ const ProductDetail = () => {
                   <div class="thumbs-wrap">
                     {images.map((img) =>
                       product.image ? (
-                        <a href="#" class="item-thumb">
-                          <img src={img} />
+                        <a
+                          class="item-thumb"
+                          onClick={() => {
+                            console.log("image" + img);
+                            setImage(img);
+                          }}
+                        >
+                          <img src={img} style={{ cursor: "pointer" }} />
                         </a>
                       ) : (
                         <Skeleton
