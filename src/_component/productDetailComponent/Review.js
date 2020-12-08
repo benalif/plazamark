@@ -1,6 +1,6 @@
 import React from "react";
 
-const Review = () => {
+const Review = ({ id }) => {
   return (
     <section class="section-content padding-y bg">
       <div class="container">
@@ -33,7 +33,7 @@ const Review = () => {
               <div>
                 <a
                   class="btn btn-outline-primary float-right"
-                  href="/plazamark/comment"
+                  href={`/product/comment/${id}`}
                 >
                   Voir plus
                 </a>

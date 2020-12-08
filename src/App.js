@@ -62,7 +62,7 @@ function App() {
                 component={CategoryPage}
               />
 
-              <Route path="/comment" component={Comment} />
+              <Route path="/product/comment/:d" component={Comment} />
 
               <Route exact path="/" component={HomePage} />
               <Route component={NotFoundPage} />

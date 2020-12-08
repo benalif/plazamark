@@ -8,7 +8,7 @@ import { useFetch } from "../../_api/ProductService";
 import ProductHolder from "../ProductComponent/ProductHolder";
 import Skeleton from "react-loading-skeleton";
 import Review from "./Review";
-import ProductModal from "../productDetailComponent/ProductModal";
+import ProductModal from "./ProductModal";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -43,7 +43,9 @@ const ProductDetail = () => {
 
   return (
     <>
-      {show && <ProductModal product={product} show={show} />}
+      {show && (
+        <ProductModal product={product} show={show} onHide={handleClose} />
+      )}
 
       <section class="section-name bg padding-y-sm">
         <div class="container">
@@ -297,7 +299,7 @@ const ProductDetail = () => {
           </article>
         </div>
       </section>
-      <Review />
+      <Review id={product.id} />
       <ProductHolder title="Articles similaires" secondTitle="Voir plus" />
       <ProductHolder title="Vus récement" secondTitle="Voir plus" />
       <FeatureSupportBlock />
