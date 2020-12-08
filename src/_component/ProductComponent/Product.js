@@ -29,7 +29,15 @@ const Product = ({ product }) => {
               <img src={image} />
             </a>
             <figcaption class="info-wrap">
-              <a href="#" class="title">
+              <a
+                href="#"
+                class="title"
+                style={{
+                  whiteSpace: "nowrap",
+                  textOverflow: "ellipsis",
+                  overflow: "hidden",
+                }}
+              >
                 {title}
               </a>
 

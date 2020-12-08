@@ -9,11 +9,15 @@ import ProductHolder from "../ProductComponent/ProductHolder";
 import Skeleton from "react-loading-skeleton";
 import Review from "./Review";
 import ProductModal from "../productDetailComponent/ProductModal";
-import Product from "../ProductComponent/Product";
+
 const ProductDetail = () => {
   const { id } = useParams();
   const [{ basket }, dispatch] = useStateValue();
   const [image, setImage] = useState(null);
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const addToBasket = (id, title, image, price, rating) => {
     dispatch({
@@ -39,7 +43,8 @@ const ProductDetail = () => {
 
   return (
     <>
-      <ProductModal product={product} />
+      {show && <ProductModal product={product} show={show} />}
+
       <section class="section-name bg padding-y-sm">
         <div class="container">
           <div class="card">
@@ -53,7 +58,12 @@ const ProductDetail = () => {
                   >
                     {!loading ? (
                       <a>
-                        <img src={image || product.image} />
+                        <img
+                          src={image || product.image}
+                          onClick={() => {
+                            handleShow();
+                          }}
+                        />
                       </a>
                     ) : (
                       <Skeleton

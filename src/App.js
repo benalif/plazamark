@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -17,6 +18,8 @@ import OnePageCheckout from "../src/_component/CheckoutComponent/onepagecheckout
 import { authContext } from "./_component/Route/Auth";
 
 import ScrollTopTop from "../src/_component/Route/ScrollToTop";
+
+import Comment from "../src/_component/CommentComponent/Comment";
 
 function App() {
   const existingTokens = JSON.parse(localStorage.getItem("token"));
@@ -58,6 +61,8 @@ function App() {
                 path="/products/category/:id"
                 component={CategoryPage}
               />
+
+              <Route path="/comment" component={Comment} />
 
               <Route exact path="/" component={HomePage} />
               <Route component={NotFoundPage} />
