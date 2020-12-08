@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/plazamark/static/css/main.40c3aabc.chunk.css",
-    "main.js": "/plazamark/static/js/main.a17fb873.chunk.js",
-    "main.js.map": "/plazamark/static/js/main.a17fb873.chunk.js.map",
+    "main.css": "/plazamark/static/css/main.9e9e7a20.chunk.css",
+    "main.js": "/plazamark/static/js/main.22c0478c.chunk.js",
+    "main.js.map": "/plazamark/static/js/main.22c0478c.chunk.js.map",
     "runtime-main.js": "/plazamark/static/js/runtime-main.3db92c62.js",
     "runtime-main.js.map": "/plazamark/static/js/runtime-main.3db92c62.js.map",
-    "static/js/2.b564400b.chunk.js": "/plazamark/static/js/2.b564400b.chunk.js",
-    "static/js/2.b564400b.chunk.js.map": "/plazamark/static/js/2.b564400b.chunk.js.map",
+    "static/js/2.749c6bab.chunk.js": "/plazamark/static/js/2.749c6bab.chunk.js",
+    "static/js/2.749c6bab.chunk.js.map": "/plazamark/static/js/2.749c6bab.chunk.js.map",
     "index.html": "/plazamark/index.html",
-    "precache-manifest.eac482e7487fe1911fea28f6892c7563.js": "/plazamark/precache-manifest.eac482e7487fe1911fea28f6892c7563.js",
+    "precache-manifest.e9d847248398b20073f677fbd8018d72.js": "/plazamark/precache-manifest.e9d847248398b20073f677fbd8018d72.js",
     "service-worker.js": "/plazamark/service-worker.js",
-    "static/css/main.40c3aabc.chunk.css.map": "/plazamark/static/css/main.40c3aabc.chunk.css.map",
-    "static/js/2.b564400b.chunk.js.LICENSE.txt": "/plazamark/static/js/2.b564400b.chunk.js.LICENSE.txt"
+    "static/css/main.9e9e7a20.chunk.css.map": "/plazamark/static/css/main.9e9e7a20.chunk.css.map",
+    "static/js/2.749c6bab.chunk.js.LICENSE.txt": "/plazamark/static/js/2.749c6bab.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.3db92c62.js",
-    "static/js/2.b564400b.chunk.js",
-    "static/css/main.40c3aabc.chunk.css",
-    "static/js/main.a17fb873.chunk.js"
+    "static/js/2.749c6bab.chunk.js",
+    "static/css/main.9e9e7a20.chunk.css",
+    "static/js/main.22c0478c.chunk.js"
   ]
 }
