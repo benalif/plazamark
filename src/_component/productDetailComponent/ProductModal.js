@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Carousel } from "react-bootstrap";
+import { PRODUCT_IMAGES } from "../../_util/resources";
 
 export default function ProductModal(props) {
   const { product } = props;
   const [image, setImage] = useState(product.image);
-
   const changeImage = (image) => setImage(image);
 
   return (
@@ -19,7 +19,7 @@ export default function ProductModal(props) {
       </Modal.Header>
 
       <Modal.Body>
-        <aside class="col-md-12">
+        {/* <aside class="col-md-12">
           <article class="gallery-wrap">
             <div
               class="img-big-wrap"
@@ -31,61 +31,35 @@ export default function ProductModal(props) {
               </a>
             </div>
             <div class="thumbs-wrap">
-              <a
-                class="item-thumb"
-                onClick={() =>
-                  changeImage(
-                    "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-                  )
-                }
-              >
-                <img
-                  src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-                  style={{ cursor: "pointer" }}
-                />
-              </a>
-              <a
-                class="item-thumb"
-                onClick={() =>
-                  changeImage(
-                    "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg"
-                  )
-                }
-              >
-                <img
-                  src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg"
-                  style={{ cursor: "pointer" }}
-                />
-              </a>
-              <a
-                class="item-thumb"
-                onClick={() =>
-                  changeImage(
-                    "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-                  )
-                }
-              >
-                <img
-                  src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-                  style={{ cursor: "pointer" }}
-                />
-              </a>
-              <a
-                class="item-thumb"
-                onClick={() =>
-                  changeImage(
-                    "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg"
-                  )
-                }
-              >
-                <img
-                  src="https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg"
-                  style={{ cursor: "pointer" }}
-                />
-              </a>
+              {PRODUCT_IMAGES.map((image) => (
+                <a class="item-thumb" onClick={() => changeImage(image)}>
+                  <img src={image} style={{ cursor: "pointer" }} />
+                </a>
+              ))}
             </div>
           </article>
-        </aside>
+        </aside> */}
+        <Carousel>
+          {PRODUCT_IMAGES.map((image) => (
+            <Carousel.Item>
+              <div class="mx-auto d-flex justify-content-center">
+                <img
+                  className="
+                 w-50"
+                  src={image.url}
+                  alt="First slide"
+                  style={{ height: "550px" }}
+                />
+              </div>
+              {/* <Carousel.Caption>
+                <h3>First slide label</h3>
+                <p>
+                  Nulla vitae elit libero, a pharetra augue mollis interdum.
+                </p>
+              </Carousel.Caption> */}
+            </Carousel.Item>
+          ))}
+        </Carousel>
       </Modal.Body>
     </Modal>
   );

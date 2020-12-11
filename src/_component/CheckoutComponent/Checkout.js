@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../Route/Auth";
 
 function Checkout() {
-  const [{ basket }] = useStateValue();
+  const [{ basket }, dispatch] = useStateValue();
   const [total, setTotal] = useState(0);
 
   const { authTokens } = useAuth();
@@ -19,6 +19,15 @@ function Checkout() {
     setTotal(totalSum);
     return () => {};
   });
+
+  const removeFromBasket = (id) => {
+    dispatch({
+      type: "REMOVE_FROM_BASKET",
+      item: {
+        id: id,
+      },
+    });
+  };
 
   return (
     <>
@@ -114,7 +123,12 @@ function Checkout() {
                               {" "}
                               <i class="fa fa-heart"></i>
                             </a>
-                            <a href="" class="btn btn-light">
+                            <a
+                              class="btn btn-light"
+                              onClick={() => {
+                                removeFromBasket();
+                              }}
+                            >
                               {" "}
                               Remove
                             </a>

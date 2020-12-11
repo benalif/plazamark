@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useState, useReducer } from "react";
 import "../productDetailComponent/ProductDetail.css";
 import { useStateValue } from "../../_service/StateProvider";
 import FeatureSupportBlock from "../common/SupportFeatureBlock";
 import { useParams } from "react-router-dom";
-import { PRODUCT_URL } from "../../_util/resources";
+import { PRODUCT_URL, PRODUCT_IMAGES } from "../../_util/resources";
 import { useFetch } from "../../_api/ProductService";
 import ProductHolder from "../ProductComponent/ProductHolder";
 import Skeleton from "react-loading-skeleton";
@@ -11,9 +11,38 @@ import Review from "./Review";
 import ProductModal from "./ProductModal";
 
 const ProductDetail = () => {
+  // adding product quantity
+  const quantityInitialState = { count: 1 };
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case "increment":
+        return { count: state.count + 1 };
+
+      case "decrement":
+        return { count: state.count - 1 };
+
+      default:
+        throw new Error();
+    }
+  };
+
+  const addQuantity = () => {
+    dispatchQuantity({ type: "increment" });
+  };
+
+  const minQuantity = () => {
+    if (state.count > 1) {
+      console.log(state.count);
+      dispatchQuantity({ type: "decrement" });
+    }
+  };
+
+  const [state, dispatchQuantity] = useReducer(reducer, quantityInitialState);
+  ////
   const { id } = useParams();
   const [{ basket }, dispatch] = useStateValue();
   const [image, setImage] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -34,12 +63,7 @@ const ProductDetail = () => {
 
   const [response, loading, error] = useFetch(PRODUCT_URL, id, image);
   const product = (response && response.data) || {};
-  const images = [
-    product.image,
-    "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
-    product.image,
-    "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
-  ];
+  const reviewOrder = { review: "134", orders: "154" };
 
   return (
     <>
@@ -79,16 +103,23 @@ const ProductDetail = () => {
                   </div>
 
                   <div class="thumbs-wrap">
-                    {images.map((img) =>
+                    {PRODUCT_IMAGES.map((img) =>
                       product.image ? (
                         <a
+                          key={img.id}
                           class="item-thumb"
+                          style={
+                            selectedItem === img.id
+                              ? { borderColor: "orange" }
+                              : { borderColor: "white" }
+                          }
                           onClick={() => {
                             console.log("image" + img);
-                            setImage(img);
+                            setImage(img.url);
+                            setSelectedItem(img.id);
                           }}
                         >
-                          <img src={img} style={{ cursor: "pointer" }} />
+                          <img src={img.url} style={{ cursor: "pointer" }} />
                         </a>
                       ) : (
                         <Skeleton
@@ -111,32 +142,39 @@ const ProductDetail = () => {
                 <article class="content-body">
                   <h2 class="title">{product.title || <Skeleton />}</h2>
 
-                  <div class="rating-wrap my-3">
-                    <ul class="rating-stars">
-                      <li style={{ width: "80%" }} class="stars-active">
-                        <img
-                          src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/icons/stars-active.svg"
-                          alt=""
-                        />
-                      </li>
-                      <li>
-                        <img
-                          src="bootstrap-ecommerce-html/images/icons/starts-disable.svg"
-                          alt=""
-                        />
-                      </li>
-                    </ul>
-                    <small class="label-rating text-muted">132 reviews</small>
-                    <small class="label-rating text-success">
-                      <i class="fa fa-clipboard-check"></i> 154 orders
-                    </small>
-                  </div>
+                  {!loading ? (
+                    <div class="rating-wrap my-3">
+                      <ul class="rating-stars">
+                        <li style={{ width: "80%" }} class="stars-active">
+                          <img
+                            src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/icons/stars-active.svg"
+                            alt=""
+                          />
+                        </li>
+                        <li>
+                          <img
+                            src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/icons/starts-disable.svg"
+                            alt=""
+                          />
+                        </li>
+                      </ul>
+                      <small class="label-rating text-muted">
+                        {`${reviewOrder.orders} reviews`}
+                      </small>
+                      <small class="label-rating text-success">
+                        <i class="fa fa-clipboard-check"></i>
+                        {`${reviewOrder.orders} orders`}
+                      </small>
+                    </div>
+                  ) : (
+                    <Skeleton width="200px" />
+                  )}
 
                   <div class="mb-3">
                     {product.price ? (
                       <>
                         <var class="price h4">{product.price}</var>
-                        <span class="text-muted">/per kg</span>
+                        <span class="text-muted"> DA</span>
                       </>
                     ) : (
                       <Skeleton width="80px" />
@@ -166,17 +204,23 @@ const ProductDetail = () => {
                             class="btn btn-light"
                             type="button"
                             id="button-plus"
+                            onClick={addQuantity}
                           >
                             {" "}
                             +{" "}
                           </button>
                         </div>
-                        <input type="text" class="form-control" value="1" />
+                        <input
+                          type="text"
+                          class="form-control"
+                          value={state.count}
+                        />
                         <div class="input-group-append">
                           <button
                             class="btn btn-light"
                             type="button"
                             id="button-minus"
+                            onClick={minQuantity}
                           >
                             {" "}
                             −{" "}

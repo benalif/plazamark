@@ -1,132 +1,67 @@
-import React from "react";
-import Category from "../_component/categoryComponent/Category";
-import Product from "../_component/ProductComponent/Product";
-
 export const BASE_URL = "https://fakestoreapi.com";
 export const PRODUCT_URL = BASE_URL + "/products";
 export const CATEGORY_PRODUCTS_URL = BASE_URL + "/products/category/";
 
-export const categories = [
-  <Category
-    title="Sport"
-    imgSrc="https://dz.jumia.is/cms/00_Collections/W31/widg-sport-6.jpg"
-  ></Category>,
-  <Category
-    title="Fashion"
-    imgSrc="https://dz.jumia.is/cms/00_Collections/W31/widg-aise-5.jpg"
-  ></Category>,
-  <Category
-    title="Cuisine"
-    imgSrc="https://dz.jumia.is/cms/00_Collections/W31/widg-chef-2.jpg"
-  ></Category>,
-  <Category
-    title="Smartie"
-    imgSrc="https://dz.jumia.is/cms/00_Collections/W31/widg-smart-10.jpg"
-  ></Category>,
-  <Category
-    title="Batiment"
-    imgSrc="https://dz.jumia.is/cms/00_Camp20/Auguste/Collection_W32/COL_DECO.png"
-  ></Category>,
-  <Category
-    title="Jeux"
-    imgSrc="https://dz.jumia.is/cms/00_Collections/W31/widg-game-3.jpg"
-  ></Category>,
+export const PRODUCT_IMAGES = [
+  { id: 1, url: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" },
+  {
+    id: 2,
+    url:
+      "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+  },
+  { id: 3, url: "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg" },
+  { id: 4, url: "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg" },
 ];
 
-export const categories2 = [
+export const COMMENTS = [
   {
-    title: "Sport",
-    imgSrc: "https://dz.jumia.is/cms/00_Homepage_TopCat/SNEAKER_DESK.jpg",
+    user: "Farid BENALI",
+    rating:
+      "https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/icons/stars-active.svg",
+    mention: "Good",
+    comment: " Dummy comment Lorem ipsum dolor sit amet, consectetur",
+    date: "23/12/2020",
+  },
+
+  {
+    user: "Tz Wassim",
+    rating:
+      "https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/icons/stars-active.svg",
+    mention: "Normal",
+    comment: " Dummy comment Lorem ipsum dolor sit amet, consectetur",
+    date: "24/12/2020",
   },
   {
-    title: "Fashion",
-    imgSrc: "https://dz.jumia.is/cms/00_Homepage_TopCat/RASAGE_DESK.jpg",
+    user: "Med Oufer",
+    rating:
+      "https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/icons/stars-active.svg",
+    mention: "Good",
+    comment: " Dummy comment Lorem ipsum dolor sit amet, consectetur",
+    date: "27/12/2020",
   },
   {
-    title: "Sport",
-    imgSrc: "https://dz.jumia.is/cms/00_Homepage_TopCat/LISSEUR_DESK.jpg",
+    user: "Farid BENALI",
+    rating:
+      "https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/icons/stars-active.svg",
+    mention: "Good",
+    comment: " Dummy comment Lorem ipsum dolor sit amet, consectetur",
+    date: "23/12/2020",
+  },
+
+  {
+    user: "Tz Wassim",
+    rating:
+      "https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/icons/stars-active.svg",
+    mention: "Normal",
+    comment: " Dummy comment Lorem ipsum dolor sit amet, consectetur",
+    date: "24/12/2020",
   },
   {
-    title: "Fashion",
-    imgSrc: "https://dz.jumia.is/cms/00_Homepage_TopCat/SHORT_DESK.jpg",
-  },
-  {
-    title: "Sport",
-    imgSrc: "https://dz.jumia.is/cms/00_Homepage_TopCat/hp_desktop_robe.png",
-  },
-  {
-    title: "Fashion",
-    imgSrc: "https://dz.jumia.is/cms/00_Homepage_TopCat/BLENDER_DESK.jpg",
-  },
-  {
-    title: "Sport",
-    imgSrc: "https://dz.jumia.is/cms/00_Homepage_TopCat/SMARTWATCH_DESKs.jpg",
-  },
-  {
-    title: "Fashion",
-    imgSrc: "https://dz.jumia.is/cms/00_Homepage_TopCat/TSHIRT_DESK.jpg",
-  },
-  {
-    title: "Sport",
-    imgSrc: "https://dz.jumia.is/cms/00_Homepage_TopCat/MASCARA_DESK.jpg",
-  },
-  {
-    title: "Fashion",
-    imgSrc: "https://dz.jumia.is/cms/00_Homepage_TopCat/CREME_DESK.jpg",
-  },
-  {
-    title: "Sport",
-    imgSrc: "https://dz.jumia.is/cms/00_Homepage_TopCat/SNEAKER_DESK.jpg",
-  },
-  {
-    title: "Fashion",
-    imgSrc: "https://dz.jumia.is/cms/00_Homepage_TopCat/RASAGE_DESK.jpg",
+    user: "Med Oufer",
+    rating:
+      "https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/icons/stars-active.svg",
+    mention: "Good",
+    comment: " Dummy comment Lorem ipsum dolor sit amet, consectetur",
+    date: "27/12/2020",
   },
 ];
-
-export const products = [
-  <Product
-    id="1"
-    title="SYSTEMES DECISIONNELS ET MODELISTATION M"
-    image="https://dz.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/28/8491/1.jpg?5466"
-    price={15}
-    rating={3}
-  ></Product>,
-  <Product
-    id="1"
-    title="SYSTEMES DECISIONNELS ET MODELISTATION M"
-    image="https://dz.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/52/8491/1.jpg?4463"
-    price={15}
-    rating={3}
-  ></Product>,
-  <Product
-    id="1"
-    title="SYSTEMES DECISIONNELS ET MODELISTATION M"
-    image="https://dz.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/96/9171/1.jpg?8050"
-    price={15}
-    rating={3}
-  ></Product>,
-  <Product
-    id="1"
-    title="SYSTEMES DECISIONNELS ET MODELISTATION M"
-    image="https://dz.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/06/5312/1.jpg?0944"
-    price={15}
-    rating={3}
-  ></Product>,
-  // <Product
-  //   id="11212"
-  //   title="SYSTEMES DECISIONNELS ET MODELISTATION M"
-  //   image="https://dz.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/51/1521/1.jpg?4725"
-  //   price={15}
-  //   rating={3}
-  // ></Product>,
-  // <Product
-  //   id="11212"
-  //   title="SYSTEMES DECISIONNELS ET MODELISTATION M"
-  //   image="https://dz.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/82/7521/1.jpg?8107"
-  //   price={15}
-  //   rating={3}
-  // ></Product>,
-];
-
-export const productsCategory = [];
