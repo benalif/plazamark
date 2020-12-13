@@ -57,6 +57,7 @@ const ProductDetail = () => {
         image: image,
         price: price,
         rating: rating,
+        quantity: state.count,
       },
     });
   };

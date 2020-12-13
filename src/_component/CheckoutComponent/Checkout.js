@@ -8,8 +8,41 @@ import { useAuth } from "../Route/Auth";
 function Checkout() {
   const [{ basket }, dispatch] = useStateValue();
   const [total, setTotal] = useState(0);
-
   const { authTokens } = useAuth();
+  var holder = {};
+
+  basket.forEach((element) => {
+    if (holder.hasOwnProperty(element.id)) {
+      holder[element.id] = holder[element.id] + element.quantity;
+    } else {
+      holder[element.id] = element.quantity;
+    }
+  });
+  var productList = [];
+
+  const finalResult = Array.from(new Set(basket.map((s) => s.id))).map((id) => {
+    return {
+      id: id,
+      title: basket.find((s) => s.id === id).title,
+      image: basket.find((s) => s.id === id).image,
+      price: basket.find((s) => s.id === id).price,
+      rating: basket.find((s) => s.id === id).rating,
+    };
+  });
+
+  finalResult.map((product) => {
+    for (var prop in holder) {
+      if (prop == product.id) {
+        productList.push({
+          id: product.id,
+          quantity: holder[prop],
+          image: product.image,
+          title: product.title,
+          price: product.price,
+        });
+      }
+    }
+  });
 
   useEffect(() => {
     let totalSum = 0;
@@ -68,13 +101,11 @@ function Checkout() {
                         <th scope="col" width="120">
                           Price
                         </th>
-                        <th scope="col" class="text-right" width="200">
-                          {" "}
-                        </th>
+                        <th scope="col" class="text-right" width="200"></th>
                       </tr>
                     </thead>
                     <tbody>
-                      {basket.map((product) => (
+                      {productList.map((product) => (
                         <tr id={product.id}>
                           <td>
                             <figure class="itemside">
@@ -99,17 +130,30 @@ function Checkout() {
                             </figure>
                           </td>
                           <td>
-                            <select class="form-control">
+                            <select
+                              class="form-control"
+                              value={product.quantity}
+                            >
                               <option>1</option>
                               <option>2</option>
                               <option>3</option>
                               <option>4</option>
+                              <option>5</option>
+                              <option>6</option>
+                              <option>7</option>
+                              <option>8</option>
+                              <option>9</option>
+                              <option>10</option>
                             </select>
                           </td>
                           <td>
                             <div class="price-wrap">
-                              <var class="price">{product.price} DA</var>
-                              <small class="text-muted"> $315.20 each </small>
+                              <var class="price">
+                                {product.price * product.quantity} DA
+                              </var>
+                              <small class="text-muted">
+                                {product.price} DA each
+                              </small>
                             </div>
                           </td>
                           <td class="text-right">
