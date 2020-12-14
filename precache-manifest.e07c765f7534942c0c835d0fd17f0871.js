@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "39f499665c6bf18d0b66064f74085458",
+    "revision": "71727761edcf70fcc47fb4b5d9fdf2c4",
     "url": "/plazamark/index.html"
   },
   {
-    "revision": "a23fb8848786b1ed2804",
+    "revision": "394a9afee520e4c630fe",
     "url": "/plazamark/static/css/main.1faff72e.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/plazamark/static/js/2.40041004.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a23fb8848786b1ed2804",
-    "url": "/plazamark/static/js/main.4de860cb.chunk.js"
+    "revision": "394a9afee520e4c630fe",
+    "url": "/plazamark/static/js/main.3fa4e0bb.chunk.js"
   },
   {
     "revision": "5a98d212544bb60db93c",
